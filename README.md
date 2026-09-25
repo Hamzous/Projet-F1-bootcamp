@@ -23,3 +23,25 @@ on parcourt les résultats
 si le temps est None, on laisse la valeur vide
 sinon on met le temps avec 3 chiffres après la virgule
 on écrit chaque ligne avec les valeurs séparées par ;
+
+
+
+PARTIE JAVA :
+1 :
+on regarde la position du pilote
+si il est dans les 10 premiers, on lui donne les points correspondants
+si il a abandonné ou qu’il est au-delà de la 10e place, on met 0 point
+2 :
+on parcourt toutes les lignes
+on cherche si le pilote existe déjà dans la liste
+si il existe pas, on le crée
+on ajoute ses points selon sa position
+si il finit 1er, on ajoute une victoire
+si il finit 2e, on ajoute une deuxième place
+ensuite on trie par points, puis victoires, puis deuxièmes places, puis par nom  
+3 :
+on parcourt la liste des pilotes
+on cherche si l’écurie existe déjà
+si elle existe pas, on la crée
+on additionne les points, les victoires et les deuxièmes places des pilotes de la même écurie
+ensuite on trie pareil que pour les pilotes

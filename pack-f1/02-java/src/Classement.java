@@ -7,6 +7,7 @@
        java -Dstdout.encoding=UTF-8 -cp out Main      (la production)
    ========================================================================= */
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Classement {
@@ -18,23 +19,117 @@ public class Classement {
     //    1 -> 25, 2 -> 18, ..., 10 -> 1. Au-delà de la 10e place : 0.
     //    Un abandon vaut la position 0, donc 0 point.
     public static int pointsPourPosition(int position) {
-        // À COMPLÉTER
-        return 0;
+
+        switch (position) {
+        case 1:
+            return 25;
+        case 2:
+            return 18;
+        case 3:
+            return 15;
+        case 4:
+            return 12;
+        case 5:
+            return 10;
+        case 6:
+            return 8;
+        case 7:
+            return 6;
+        case 8:
+            return 4;
+        case 9:
+            return 2;
+        case 10:
+            return 1;
+        default:
+            return 0;
     }
+}
+
 
     // 2. classementPilotes(lignes) : un Resultat par pilote, avec ses points,
     //    ses victoires (position 1) et ses 2e places, trié par :
     //    points décroissants, puis victoires, puis 2e places, puis nom (A→Z).
     public static List<Resultat> classementPilotes(List<Ligne> lignes) {
-        // À COMPLÉTER
-        return null;
+
+   List<Resultat> resultats = new ArrayList<>();
+
+    for (Ligne ligne : lignes) {
+
+        Resultat trouve = null;
+
+        for (Resultat r : resultats) {
+            if (r.nom.equals(ligne.pilote())) {
+                trouve = r;
+            }
+        }
+
+        if (trouve == null) {
+            trouve = new Resultat(ligne.pilote(), ligne.ecurie());
+            resultats.add(trouve);
+        }
+
+        trouve.points += pointsPourPosition(ligne.position());
+
+        if (ligne.position() == 1) {
+            trouve.victoires++;
+        }
+
+        if (ligne.position() == 2) {
+            trouve.deuxiemes++;
+        }
     }
+
+    resultats.sort((a, b) -> {
+
+        if (a.points != b.points) {
+            return b.points - a.points;
+        }
+
+        if (a.victoires != b.victoires) {
+            return b.victoires - a.victoires;
+        }
+
+        if (a.deuxiemes != b.deuxiemes) {
+            return b.deuxiemes - a.deuxiemes;
+        }
+
+        return a.nom.compareTo(b.nom);
+    });
+
+    return resultats;
+}
+
+    
 
     // 3. classementEcuries(pilotes) : additionne les points, victoires et
     //    2e places des pilotes de chaque écurie. Même ordre de tri.
-    public static List<Resultat> classementEcuries(List<Resultat> pilotes) {
-        // À COMPLÉTER
-        return null;
+    public static List<Resultat> classementEcuries(List<Resultat> pilotes) { {
+
+    List<Resultat> resultats = new ArrayList<>();
+
+    for (Resultat pilote : pilotes) {
+
+        Resultat trouve = null;
+
+        for (Resultat r : resultats) {
+            if (r.nom.equals(pilote.ecurie)) {
+                trouve = r;
+            }
+        }
+
+        if (trouve == null) {
+            trouve = new Resultat(pilote.ecurie, "");
+            resultats.add(trouve);
+        }
+
+        trouve.points += pilote.points;
+        trouve.victoires += pilote.victoires;
+        trouve.deuxiemes += pilote.deuxiemes;
+    };
+
+    return resultats;
+}
     }
 
     // 4. positionMoyenne(lignes, pilote) : moyenne des positions de ce pilote,

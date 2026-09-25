@@ -45,3 +45,26 @@ on cherche si l’écurie existe déjà
 si elle existe pas, on la crée
 on additionne les points, les victoires et les deuxièmes places des pilotes de la même écurie
 ensuite on trie pareil que pour les pilotes
+
+
+PARTIE Javascritp : 
+1 :
+
+on crée une copie avec [...liste]
+comme ça on modifie pas la liste de base
+on trie par points du plus grand au plus petit
+si les points sont égaux, on regarde les victoires
+puis on renvoie la nouvelle liste
+
+2 :
+on récupère le <tbody> avec son id
+on vide son contenu avec innerHTML = ""
+on parcourt la liste
+on crée une ligne <tr>
+on ajoute data-nom
+on met les 5 cellules dans l’ordre demandé
+on ajoute la ligne dans le tableau
+
+3 (pas terminé) : 
+on récupère le <tbody>
+on récupère toutes les lignes <tr>
